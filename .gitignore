@@ -3,6 +3,7 @@
 *.class
 *.jar
 *.war
+*.log
 
 # Gradle / Android
 **/.gradle/
@@ -16,9 +17,9 @@
 **/.classpath
 **/*.iml
 
-# Nested git folders
+# Git interno
 **/.git/
 
-# OS files
+# Sistema
 .DS_Store
 Thumbs.db
