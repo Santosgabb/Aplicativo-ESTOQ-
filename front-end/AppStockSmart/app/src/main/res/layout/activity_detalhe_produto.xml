@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalhes do Produto"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/txtDetalheNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome:" />
+
+        <TextView
+            android:id="@+id/txtDetalheTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo:"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtDetalhePrecoCusto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Preço de custo:"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtDetalhePrecoVenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Preço de venda:"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtDetalheQuantidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quantidade:"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnEditarDetalheProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar Produto"
+            android:layout_marginTop="24dp" />
+
+        <Button
+            android:id="@+id/btnExcluirDetalheProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Excluir Produto"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+</ScrollView>

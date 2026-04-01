@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Relatório / Fechamento de Caixa"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/txtQuantidadeVendas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quantidade de vendas: 0"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtTotalBruto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total bruto: R$ 0.0"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtTotalDescontos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total de descontos: R$ 0.0"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtTotalAcrescimos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total de acréscimos: R$ 0.0"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtTotalLiquido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total líquido: R$ 0.0"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Formas de pagamento"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="24dp" />
+
+        <TextView
+            android:id="@+id/txtTotalDinheiro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total em dinheiro: R$ 0.0"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtTotalPix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total em Pix: R$ 0.0"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtTotalDebito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total em débito: R$ 0.0"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtTotalCredito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total em crédito: R$ 0.0"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtVendasComDesconto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vendas com desconto: 0"
+            android:layout_marginTop="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vendas detalhadas"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="24dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRelatorioVendas"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+</ScrollView>
