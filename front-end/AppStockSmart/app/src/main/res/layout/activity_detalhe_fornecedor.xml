@@ -1,55 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
+<!--
+    Tela de detalhes do fornecedor.
+    Exibe:
+    - Nome
+    - Telefone
+    - Email
+
+    Ações:
+    - Editar fornecedor
+    - Excluir fornecedor
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela">
+
+    <!-- Container principal -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Detalhes do Fornecedor"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:id="@+id/txtDetalheNomeFornecedor"
+        <!-- Cabeçalho -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome:" />
+            android:orientation="vertical"
+            android:background="@color/cor_superficie"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
 
-        <TextView
-            android:id="@+id/txtDetalheTelefoneFornecedor"
+            <!-- Título -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detalhes do Fornecedor"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Subtítulo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Visualize as informações completas do fornecedor"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Card com informações -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Telefone:"
-            android:layout_marginTop="8dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtDetalheEmailFornecedor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email:"
-            android:layout_marginTop="8dp" />
+            <!-- Conteúdo do card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <Button
-            android:id="@+id/btnEditarDetalheFornecedor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Editar Fornecedor"
-            android:layout_marginTop="24dp" />
+                <!-- Rótulo e valor: Nome -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome do fornecedor"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
 
-        <Button
-            android:id="@+id/btnExcluirDetalheFornecedor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Excluir Fornecedor"
-            android:layout_marginTop="12dp" />
+                <TextView
+                    android:id="@+id/txtDetalheNomeFornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Nome:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
+                <!-- Rótulo e valor: Telefone -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Telefone"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtDetalheTelefoneFornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Telefone:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="16sp" />
+
+                <!-- Rótulo e valor: Email -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Email"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtDetalheEmailFornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Email:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="16sp" />
+
+                <!-- Botão para editar -->
+                <Button
+                    android:id="@+id/btnEditarDetalheFornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Editar Fornecedor"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+
+                <!-- Botão para excluir -->
+                <Button
+                    android:id="@+id/btnExcluirDetalheFornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_botao_perigo"
+                    android:minHeight="52dp"
+                    android:text="Excluir Fornecedor"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>

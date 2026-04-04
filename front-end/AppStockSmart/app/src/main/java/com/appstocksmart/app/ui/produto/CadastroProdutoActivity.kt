@@ -17,18 +17,27 @@ import retrofit2.Response
 
 class CadastroProdutoActivity : AppCompatActivity() {
 
+    // Binding da tela
     private lateinit var binding: ActivityCadastroProdutoBinding
+
+    // Controle para evitar clique duplo no botão salvar
     private var salvando = false
+
+    // Lista de fornecedores carregada da API
     private var listaFornecedores: List<Fornecedor> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Infla o layout com ViewBinding
         binding = ActivityCadastroProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Configura os spinners e carrega os fornecedores
         configurarSpinnerTipo()
         carregarFornecedores()
 
+        // Clique do botão salvar
         binding.btnSalvarProduto.setOnClickListener {
             if (salvando) return@setOnClickListener
 
@@ -39,11 +48,18 @@ class CadastroProdutoActivity : AppCompatActivity() {
     }
 
     private fun configurarSpinnerTipo() {
+        // Pega os valores do enum TipoProduto
         val tipos = TipoProduto.values().map { it.name }
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, tipos)
+        // Adapter do spinner
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            tipos
+        )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
+        // Liga o adapter ao spinner
         binding.spinnerTipoProduto.adapter = adapter
     }
 
@@ -51,6 +67,7 @@ class CadastroProdutoActivity : AppCompatActivity() {
         val apiService = ApiClient.retrofit.create(ApiService::class.java)
 
         apiService.listarFornecedores().enqueue(object : Callback<List<Fornecedor>> {
+
             override fun onResponse(
                 call: Call<List<Fornecedor>>,
                 response: Response<List<Fornecedor>>
@@ -58,12 +75,12 @@ class CadastroProdutoActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     listaFornecedores = response.body() ?: emptyList()
 
-                    val nomes = listaFornecedores.map { "${it.id} - ${it.nome}" }
+                    val nomesFornecedores = listaFornecedores.map { "${it.id} - ${it.nome}" }
 
                     val adapter = ArrayAdapter(
                         this@CadastroProdutoActivity,
                         android.R.layout.simple_spinner_item,
-                        nomes
+                        nomesFornecedores
                     )
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
@@ -74,6 +91,9 @@ class CadastroProdutoActivity : AppCompatActivity() {
                         "Erro ao carregar fornecedores",
                         Toast.LENGTH_SHORT
                     ).show()
+
+                    salvando = false
+                    binding.btnSalvarProduto.isEnabled = true
                 }
             }
 
@@ -83,48 +103,57 @@ class CadastroProdutoActivity : AppCompatActivity() {
                     "Falha ao carregar fornecedores: ${t.message}",
                     Toast.LENGTH_LONG
                 ).show()
+
+                salvando = false
+                binding.btnSalvarProduto.isEnabled = true
             }
         })
     }
 
     private fun salvarProduto() {
+        // Lê os valores dos campos
         val nome = binding.edtNomeProduto.text.toString().trim()
         val precoCustoTexto = binding.edtPrecoCustoProduto.text.toString().trim()
         val precoVendaTexto = binding.edtPrecoVendaProduto.text.toString().trim()
         val quantidadeTexto = binding.edtQuantidadeProduto.text.toString().trim()
         val tipoSelecionado = binding.spinnerTipoProduto.selectedItem.toString()
 
-        if (nome.isEmpty() || precoCustoTexto.isEmpty() || precoVendaTexto.isEmpty() || quantidadeTexto.isEmpty()) {
+        // Validação de campos vazios
+        if (
+            nome.isEmpty() ||
+            precoCustoTexto.isEmpty() ||
+            precoVendaTexto.isEmpty() ||
+            quantidadeTexto.isEmpty()
+        ) {
             Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
-            salvando = false
-            binding.btnSalvarProduto.isEnabled = true
+            reativarBotaoSalvar()
             return
         }
 
+        // Verifica se existem fornecedores carregados
         if (listaFornecedores.isEmpty()) {
             Toast.makeText(this, "Nenhum fornecedor disponível", Toast.LENGTH_SHORT).show()
-            salvando = false
-            binding.btnSalvarProduto.isEnabled = true
+            reativarBotaoSalvar()
             return
         }
 
+        // Converte os valores numéricos
         val precoCusto = precoCustoTexto.toDoubleOrNull()
         val precoVenda = precoVendaTexto.toDoubleOrNull()
         val quantidade = quantidadeTexto.toIntOrNull()
 
         if (precoCusto == null || precoVenda == null || quantidade == null) {
             Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT).show()
-            salvando = false
-            binding.btnSalvarProduto.isEnabled = true
+            reativarBotaoSalvar()
             return
         }
 
+        // Pega o fornecedor selecionado
         val posicaoFornecedor = binding.spinnerFornecedorProduto.selectedItemPosition
 
         if (posicaoFornecedor < 0 || posicaoFornecedor >= listaFornecedores.size) {
             Toast.makeText(this, "Fornecedor inválido", Toast.LENGTH_SHORT).show()
-            salvando = false
-            binding.btnSalvarProduto.isEnabled = true
+            reativarBotaoSalvar()
             return
         }
 
@@ -132,8 +161,7 @@ class CadastroProdutoActivity : AppCompatActivity() {
 
         if (fornecedorSelecionado.id == null || fornecedorSelecionado.id == 0L) {
             Toast.makeText(this, "Fornecedor sem ID válido", Toast.LENGTH_SHORT).show()
-            salvando = false
-            binding.btnSalvarProduto.isEnabled = true
+            reativarBotaoSalvar()
             return
         }
 
@@ -142,6 +170,7 @@ class CadastroProdutoActivity : AppCompatActivity() {
             "Fornecedor selecionado id=${fornecedorSelecionado.id}, nome=${fornecedorSelecionado.nome}"
         )
 
+        // Monta o objeto produto para enviar para a API
         val produtoRequest = Produto(
             id = null,
             nome = nome,
@@ -149,7 +178,8 @@ class CadastroProdutoActivity : AppCompatActivity() {
             precoCusto = precoCusto,
             precoVenda = precoVenda,
             quantidade = quantidade,
-            fornecedor = fornecedorSelecionado
+            fornecedor = fornecedorSelecionado,
+            ativo = true
         )
 
         val apiService = ApiClient.retrofit.create(ApiService::class.java)
@@ -159,8 +189,7 @@ class CadastroProdutoActivity : AppCompatActivity() {
         apiService.salvarProduto(produtoRequest).enqueue(object : Callback<Produto> {
 
             override fun onResponse(call: Call<Produto>, response: Response<Produto>) {
-                salvando = false
-                binding.btnSalvarProduto.isEnabled = true
+                reativarBotaoSalvar()
 
                 if (response.isSuccessful) {
                     Toast.makeText(
@@ -182,8 +211,7 @@ class CadastroProdutoActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<Produto>, t: Throwable) {
-                salvando = false
-                binding.btnSalvarProduto.isEnabled = true
+                reativarBotaoSalvar()
 
                 Log.e("CADASTRO_PRODUTO", "Falha", t)
 
@@ -194,5 +222,10 @@ class CadastroProdutoActivity : AppCompatActivity() {
                 ).show()
             }
         })
+    }
+
+    private fun reativarBotaoSalvar() {
+        salvando = false
+        binding.btnSalvarProduto.isEnabled = true
     }
 }

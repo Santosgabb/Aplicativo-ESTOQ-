@@ -1,30 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Tela de usuários.
+
+    Ajustes aplicados:
+    - cabeçalho e card com nova paleta
+    - botão de ativos como principal
+    - botão de inativos como secundário
+    - botão de novo usuário como principal
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@drawable/bg_tela"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Usuários"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/btnNovoUsuario"
+    <!-- Cabeçalho -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cadastrar Usuário"
-        android:layout_marginTop="12dp" />
+        android:background="@color/cor_superficie"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="12dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuários"
+            android:textColor="@color/cor_texto_principal"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtSubtituloUsuarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Exibindo usuários ativos"
+            android:textColor="@color/cor_texto_secundario"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Card de ações -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/cor_borda"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ações"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnMostrarUsuariosAtivos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Ativos"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_superficie"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnMostrarUsuariosInativos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_botao_secundario"
+                    android:minHeight="52dp"
+                    android:text="Inativos"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_primaria"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnNovoUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_botao_primario"
+                android:minHeight="52dp"
+                android:text="Cadastrar Usuário"
+                android:textAllCaps="false"
+                android:textColor="@color/cor_superficie"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Lista -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerUsuarios"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="16dp" />
+        android:clipToPadding="false"
+        android:paddingHorizontal="8dp"
+        android:paddingBottom="12dp" />
 
 </LinearLayout>

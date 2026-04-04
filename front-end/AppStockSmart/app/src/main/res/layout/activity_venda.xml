@@ -1,182 +1,464 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Tela de venda / PDV.
+
+    Ajustes aplicados:
+    - nova paleta em cabeçalho, cards e textos
+    - campos padronizados
+    - botão buscar como secundário
+    - botões de ação principais mantidos em azul
+    - totais com cores do tema
+-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:text="PDV"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/edtBuscarProdutoVenda"
-            android:hint="Buscar produto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/btnBuscarProdutoVenda"
-            android:text="Buscar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerProdutosVenda"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"/>
-
-        <TextView
-            android:id="@+id/txtProdutoSelecionadoVenda"
-            android:text="Nenhum produto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/edtQuantidadeVenda"
-            android:hint="Quantidade"
-            android:inputType="number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/btnAdicionarCarrinho"
-            android:text="Adicionar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/txtCarrinhoVenda"
-            android:text="Carrinho vazio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/txtTotalVenda"
-            android:text="Total: 0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/btnFinalizarVenda"
-            android:text="Finalizar Venda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
-        <!-- PAGAMENTO -->
-
+        <!-- Cabeçalho -->
         <LinearLayout
-            android:id="@+id/layoutPagamentoVenda"
-            android:orientation="vertical"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp"
+            android:background="@color/cor_superficie">
 
             <TextView
-                android:text="Pagamento"
-                android:textSize="20sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/edtDescontoVenda"
-                android:hint="Desconto"
-                android:inputType="numberDecimal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/edtAcrescimoVenda"
-                android:hint="Acrescimo"
-                android:inputType="numberDecimal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/edtLoginGerente"
-                android:hint="Login gerente"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/edtSenhaGerente"
-                android:hint="Senha gerente"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/edtPagamentoDinheiro"
-                android:hint="Dinheiro"
-                android:inputType="numberDecimal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/edtPagamentoPix"
-                android:hint="Pix"
-                android:inputType="numberDecimal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/edtPagamentoDebito"
-                android:hint="Debito"
-                android:inputType="numberDecimal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <EditText
-                android:id="@+id/edtPagamentoCredito"
-                android:hint="Credito"
-                android:inputType="numberDecimal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <Button
-                android:id="@+id/btnCalcularPagamento"
-                android:text="Calcular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/txtValorPago"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pago: R$ 0.0"
-                android:layout_marginTop="16dp" />
+                android:text="PDV"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/txtValorFaltante"
-                android:text="Falta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/txtTroco"
-                android:text="Troco"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <Button
-                android:id="@+id/btnConfirmarPagamento"
-                android:text="Confirmar Venda"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Busque produtos, monte o carrinho e finalize a venda"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="14sp" />
         </LinearLayout>
 
-    </LinearLayout>
+        <!-- Card busca -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buscar Produto"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtBuscarProdutoVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o nome ou tipo do produto"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <Button
+                    android:id="@+id/btnBuscarProdutoVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_botao_secundario"
+                    android:minHeight="52dp"
+                    android:text="Buscar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_primaria"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerProdutosVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="16dp"
+                    android:nestedScrollingEnabled="true"
+                    android:scrollbars="vertical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Produto selecionado"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtProdutoSelecionadoVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Selecione um produto da lista"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Quantidade"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtQuantidadeVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite a quantidade"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <Button
+                    android:id="@+id/btnAdicionarCarrinho"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Adicionar ao Carrinho"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_superficie"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card carrinho -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Carrinho"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtCarrinhoVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Carrinho vazio"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtTotalVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Total: R$ 0,00"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnFinalizarVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Finalizar Venda"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_superficie"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card pagamento -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPagamentoVenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:id="@+id/layoutPagamentoVenda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pagamento"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Desconto"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtDescontoVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o desconto"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Acréscimo"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtAcrescimoVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o acréscimo"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Login do gerente"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtLoginGerente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o login do gerente"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Senha do gerente"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtSenhaGerente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite a senha do gerente"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Pagamento em dinheiro"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtPagamentoDinheiro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Valor em dinheiro"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Pagamento em Pix"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtPagamentoPix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Valor em Pix"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Pagamento em débito"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtPagamentoDebito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Valor em débito"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Pagamento em crédito"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edtPagamentoCredito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Valor em crédito"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <Button
+                    android:id="@+id/btnCalcularPagamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Calcular Pagamento"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_superficie"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtValorPago"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Pago: R$ 0,00"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtValorFaltante"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Falta: R$ 0,00"
+                    android:textColor="@color/cor_alerta"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtTroco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Troco: R$ 0,00"
+                    android:textColor="@color/cor_sucesso"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/btnConfirmarPagamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Confirmar Venda"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_superficie"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 </ScrollView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Fundo geral das telas.
+    Agora com leve degradê para dar mais identidade visual.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="270"
+        android:endColor="@color/cor_superficie"
+        android:startColor="@color/cor_fundo" />
+</shape>

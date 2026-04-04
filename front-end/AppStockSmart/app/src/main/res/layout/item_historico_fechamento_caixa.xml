@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Item da lista de histórico de fechamento de caixa.
+
+    Ajustes aplicados:
+    - borda do card padronizada
+    - títulos e textos com a nova paleta
+    - valor final destacado
+-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="3dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/cor_borda">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvOperadorNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Operador:"
+            android:textColor="@color/cor_texto_principal"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvGerenteNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Gerente:"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvDataReferencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Data:"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvQuantidadeVendas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Qtd. vendas:"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvValorInicial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Valor inicial:"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvTotalDinheiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Total em dinheiro:"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvTotalPix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Total em PIX:"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvTotalDebito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Total em débito:"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvTotalCredito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Total em crédito:"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvTotalCartao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Total em cartão CREDITO + DEBITO :"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvTotalSaidas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Total de saídas:"
+            android:textColor="@color/cor_texto_principal" />
+
+        <TextView
+            android:id="@+id/tvDinheiroFinal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Dinheiro final:"
+            android:textColor="@color/cor_sucesso"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvObservacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Observação:"
+            android:textColor="@color/cor_texto_secundario" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

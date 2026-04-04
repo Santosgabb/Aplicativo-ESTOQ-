@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.appstocksmart.app.api.ApiClient
-import com.appstocksmart.app.api.ApiService
 import com.appstocksmart.app.databinding.ActivityEditarFornecedorBinding
 import com.appstocksmart.app.model.Fornecedor
 import retrofit2.Call
@@ -16,31 +15,44 @@ class EditarFornecedorActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditarFornecedorBinding
     private var idFornecedor: Long = -1L
 
+    // Serviço da API
+    private val apiService by lazy { ApiClient.apiService }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Infla o layout com ViewBinding
         binding = ActivityEditarFornecedorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Configura a barra superior
+        supportActionBar?.title = "Editar Fornecedor"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Recupera o ID enviado pela tela anterior
         idFornecedor = intent.getLongExtra("idFornecedor", -1L)
 
+        // Valida o ID
         if (idFornecedor == -1L) {
             Toast.makeText(this, "Fornecedor inválido", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
+        // Carrega os dados do fornecedor
         carregarDadosFornecedor()
 
+        // Clique do botão salvar
         binding.btnSalvarEdicaoFornecedor.setOnClickListener {
             salvarEdicao()
         }
     }
 
+    /*
+     * Busca os dados do fornecedor pelo ID
+     * e preenche os campos da tela.
+     */
     private fun carregarDadosFornecedor() {
-
-        val apiService = ApiClient.retrofit.create(ApiService::class.java)
-
         apiService.buscarFornecedorPorId(idFornecedor)
             .enqueue(object : Callback<Fornecedor> {
 
@@ -48,9 +60,7 @@ class EditarFornecedorActivity : AppCompatActivity() {
                     call: Call<Fornecedor>,
                     response: Response<Fornecedor>
                 ) {
-
                     if (response.isSuccessful) {
-
                         val fornecedor = response.body()
 
                         if (fornecedor == null) {
@@ -63,12 +73,11 @@ class EditarFornecedorActivity : AppCompatActivity() {
                             return
                         }
 
-                        binding.edtEditarNomeFornecedor.setText(fornecedor.nome)
-                        binding.edtEditarTelefoneFornecedor.setText(fornecedor.telefone)
-                        binding.edtEditarEmailFornecedor.setText(fornecedor.email)
-
+                        // Preenche os campos do formulário
+                        binding.edtEditarNomeFornecedor.setText(fornecedor.nome ?: "")
+                        binding.edtEditarTelefoneFornecedor.setText(fornecedor.telefone ?: "")
+                        binding.edtEditarEmailFornecedor.setText(fornecedor.email ?: "")
                     } else {
-
                         Toast.makeText(
                             this@EditarFornecedorActivity,
                             "Erro ao buscar fornecedor",
@@ -79,24 +88,25 @@ class EditarFornecedorActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<Fornecedor>, t: Throwable) {
-
                     Toast.makeText(
                         this@EditarFornecedorActivity,
                         "Falha na conexão: ${t.message}",
                         Toast.LENGTH_LONG
                     ).show()
-
                     finish()
                 }
             })
     }
 
+    /*
+     * Valida os campos e envia a atualização para o back-end.
+     */
     private fun salvarEdicao() {
-
         val nome = binding.edtEditarNomeFornecedor.text.toString().trim()
         val telefone = binding.edtEditarTelefoneFornecedor.text.toString().trim()
         val email = binding.edtEditarEmailFornecedor.text.toString().trim()
 
+        // Validação simples
         if (nome.isEmpty() || telefone.isEmpty() || email.isEmpty()) {
             Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
             return
@@ -109,8 +119,6 @@ class EditarFornecedorActivity : AppCompatActivity() {
             email = email
         )
 
-        val apiService = ApiClient.retrofit.create(ApiService::class.java)
-
         apiService.atualizarFornecedor(idFornecedor, fornecedorAtualizado)
             .enqueue(object : Callback<Fornecedor> {
 
@@ -118,19 +126,14 @@ class EditarFornecedorActivity : AppCompatActivity() {
                     call: Call<Fornecedor>,
                     response: Response<Fornecedor>
                 ) {
-
                     if (response.isSuccessful) {
-
                         Toast.makeText(
                             this@EditarFornecedorActivity,
-                            "Fornecedor atualizado",
+                            "Fornecedor atualizado com sucesso",
                             Toast.LENGTH_SHORT
                         ).show()
-
                         finish()
-
                     } else {
-
                         Toast.makeText(
                             this@EditarFornecedorActivity,
                             "Erro ao atualizar: ${response.code()}",
@@ -140,13 +143,20 @@ class EditarFornecedorActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<Fornecedor>, t: Throwable) {
-
                     Toast.makeText(
                         this@EditarFornecedorActivity,
-                        "Falha na conexão",
+                        "Falha na conexão: ${t.message}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             })
+    }
+
+    /*
+     * Ação da seta de voltar da ActionBar.
+     */
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

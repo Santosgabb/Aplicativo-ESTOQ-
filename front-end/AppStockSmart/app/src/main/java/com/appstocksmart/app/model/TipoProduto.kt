@@ -5,5 +5,9 @@ enum class TipoProduto {
     BEBIDA,
     LIMPEZA,
     HIGIENE,
-    OUTROS
+    OUTROS,
+    CACHAÇA,
+    CIGARRO,
+    DOCE,
+    TESTE
 }

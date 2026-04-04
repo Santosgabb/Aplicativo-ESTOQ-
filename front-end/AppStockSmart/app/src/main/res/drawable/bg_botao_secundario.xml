@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Botão secundário.
+    Fundo claro com borda azul e visual mais destacado.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/cor_superficie" />
+
+    <stroke
+        android:width="1.4dp"
+        android:color="@color/cor_primaria" />
+
+    <corners android:radius="16dp" />
+</shape>

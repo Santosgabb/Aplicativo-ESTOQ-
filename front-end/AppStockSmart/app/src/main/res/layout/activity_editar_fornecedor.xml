@@ -1,48 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
+<!--
+    Tela de edição de fornecedor.
+    Permite atualizar:
+    - nome
+    - telefone
+    - email
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela">
+
+    <!-- Container principal -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Editar Fornecedor"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <EditText
-            android:id="@+id/edtEditarNomeFornecedor"
+        <!-- Cabeçalho -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome" />
+            android:background="@color/cor_superficie"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
 
-        <EditText
-            android:id="@+id/edtEditarTelefoneFornecedor"
+            <!-- Título -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editar Fornecedor"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Subtítulo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Atualize os dados do fornecedor"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Card principal -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Telefone"
-            android:layout_marginTop="12dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <EditText
-            android:id="@+id/edtEditarEmailFornecedor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:layout_marginTop="12dp" />
+            <!-- Conteúdo do formulário -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <Button
-            android:id="@+id/btnSalvarEdicaoFornecedor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Salvar Alterações"
-            android:layout_marginTop="20dp" />
+                <!-- Campo: nome -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome do fornecedor"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
 
+                <EditText
+                    android:id="@+id/edtEditarNomeFornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o nome do fornecedor"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Campo: telefone -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Telefone"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtEditarTelefoneFornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o telefone"
+                    android:inputType="phone"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Campo: email -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Email"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtEditarEmailFornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o email"
+                    android:inputType="textEmailAddress"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Botão salvar -->
+                <Button
+                    android:id="@+id/btnSalvarEdicaoFornecedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Salvar Alterações"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>

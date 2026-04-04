@@ -1,121 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
+<!--
+    Tela de detalhe do relatório de venda.
+    Exibe:
+    - dados da venda
+    - resumo financeiro
+    - formas de pagamento
+    - itens vendidos
+
+    Também possui botão para impressão do cupom.
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela">
+
+    <!-- Container principal -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtVendaId"
+        <!-- Cabeçalho -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Venda #0"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:background="@color/cor_superficie"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
 
-        <TextView
-            android:id="@+id/txtVendaUsuario"
+            <!-- Identificador da venda -->
+            <TextView
+                android:id="@+id/txtVendaId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Venda #0"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Subtítulo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Visualize os detalhes completos da venda"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="14sp" />
+
+            <!-- Botão imprimir cupom -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnImprimirCupomRelatorio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Imprimir cupom"
+                android:textAllCaps="false"
+                android:textColor="@color/cor_texto_claro"
+                app:backgroundTint="@color/cor_primaria"
+                app:cornerRadius="14dp" />
+        </LinearLayout>
+
+        <!-- Card: informações da venda -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Operador:"
-            android:layout_marginTop="12dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtVendaPerfil"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Informações da venda"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtVendaUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Operador:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendaPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Perfil:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendaDataHora"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Data/Hora:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card: resumo financeiro -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Perfil:"
-            android:layout_marginTop="8dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtVendaDataHora"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resumo financeiro"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtVendaSubtotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Subtotal:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendaDesconto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Desconto:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendaAcrescimo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Acréscimo:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendaTotalFinal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Total final:"
+                    android:textColor="@color/cor_sucesso"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card: formas de pagamento -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data/Hora:"
-            android:layout_marginTop="8dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtVendaSubtotal"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Formas de pagamento"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtVendaDinheiro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Dinheiro:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendaPix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Pix:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendaDebito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Débito:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendaCredito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Crédito:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendaDescontoAutorizado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Desconto autorizado por gerente:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card: itens da venda -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Subtotal:"
-            android:layout_marginTop="16dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtVendaDesconto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Desconto:"
-            android:layout_marginTop="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <TextView
-            android:id="@+id/txtVendaAcrescimo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Acréscimo:"
-            android:layout_marginTop="8dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Itens da venda"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtVendaTotalFinal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Total final:"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/txtVendaDinheiro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dinheiro:"
-            android:layout_marginTop="16dp" />
-
-        <TextView
-            android:id="@+id/txtVendaPix"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pix:"
-            android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/txtVendaDebito"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Débito:"
-            android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/txtVendaCredito"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Crédito:"
-            android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/txtVendaDescontoAutorizado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Desconto autorizado por gerente:"
-            android:layout_marginTop="16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Itens da venda"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp" />
-
-        <TextView
-            android:id="@+id/txtItensVenda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Itens"
-            android:layout_marginTop="12dp" />
-
+                <TextView
+                    android:id="@+id/txtItensVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_card"
+                    android:padding="12dp"
+                    android:text="Itens"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>

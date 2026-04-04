@@ -1,114 +1,422 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Tela de relatórios.
+
+    Ajustes aplicados:
+    - paleta nova em cabeçalho e cards
+    - spinners e EditText no padrão bg_input
+    - MaterialButtons com backgroundTint
+    - totais coloridos com as cores do tema
+-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Relatório / Fechamento de Caixa"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="20dp" />
-
-        <TextView
-            android:id="@+id/txtQuantidadeVendas"
+        <!-- Cabeçalho -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quantidade de vendas: 0"
-            android:layout_marginTop="8dp" />
+            android:background="@color/cor_superficie"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
 
-        <TextView
-            android:id="@+id/txtTotalBruto"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Relatórios"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Acompanhe o resumo financeiro e as vendas realizadas"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Card filtro -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total bruto: R$ 0.0"
-            android:layout_marginTop="8dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtTotalDescontos"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Filtro por período"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtPeriodoSelecionado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Período selecionado: Todas as vendas"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Tipo de período"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerTipoPeriodoRelatorio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input" />
+
+                <LinearLayout
+                    android:id="@+id/layoutAnoRelatorio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ano"
+                        android:textColor="@color/cor_texto_principal"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edtAnoRelatorio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_input"
+                        android:hint="Ex: 2026"
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:textColor="@color/cor_texto_principal"
+                        android:textColorHint="@color/cor_texto_secundario" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutMesRelatorio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mês"
+                        android:textColor="@color/cor_texto_principal"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinnerMesRelatorio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_input" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutTrimestreRelatorio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Trimestre"
+                        android:textColor="@color/cor_texto_principal"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinnerTrimestreRelatorio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_input" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSemestreRelatorio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Semestre"
+                        android:textColor="@color/cor_texto_principal"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spinnerSemestreRelatorio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_input" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAplicarFiltroRelatorio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Aplicar filtro"
+                        android:textAllCaps="false"
+                        android:textColor="@color/cor_superficie"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/cor_primaria"
+                        app:cornerRadius="14dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLimparFiltroRelatorio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="Limpar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/cor_superficie"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/cor_texto_secundario"
+                        app:cornerRadius="14dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card resumo -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total de descontos: R$ 0.0"
-            android:layout_marginTop="8dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtTotalAcrescimos"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resumo geral"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtQuantidadeVendas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Quantidade de vendas: 0"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtTotalBruto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Total bruto: R$ 0,00"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtTotalDescontos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Total de descontos: R$ 0,00"
+                    android:textColor="@color/cor_alerta"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtTotalAcrescimos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Total de acréscimos: R$ 0,00"
+                    android:textColor="@color/cor_info"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtTotalLiquido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Total líquido: R$ 0,00"
+                    android:textColor="@color/cor_sucesso"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card pagamentos -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total de acréscimos: R$ 0.0"
-            android:layout_marginTop="8dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtTotalLiquido"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Formas de pagamento"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtTotalDinheiro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Total em dinheiro: R$ 0,00"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtTotalPix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Total em Pix: R$ 0,00"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtTotalDebito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Total em débito: R$ 0,00"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtTotalCredito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Total em crédito: R$ 0,00"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVendasComDesconto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Vendas com desconto: 0"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card lista -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total líquido: R$ 0.0"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Formas de pagamento"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="24dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <TextView
-            android:id="@+id/txtTotalDinheiro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Total em dinheiro: R$ 0.0"
-            android:layout_marginTop="8dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lista de vendas"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtTotalPix"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Total em Pix: R$ 0.0"
-            android:layout_marginTop="8dp" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerRelatorioVendas"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_marginTop="14dp"
+                    android:nestedScrollingEnabled="true" />
 
-        <TextView
-            android:id="@+id/txtTotalDebito"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Total em débito: R$ 0.0"
-            android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/txtTotalCredito"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Total em crédito: R$ 0.0"
-            android:layout_marginTop="8dp" />
-
-        <TextView
-            android:id="@+id/txtVendasComDesconto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vendas com desconto: 0"
-            android:layout_marginTop="24dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vendas detalhadas"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="24dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerRelatorioVendas"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_marginTop="12dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 </ScrollView>

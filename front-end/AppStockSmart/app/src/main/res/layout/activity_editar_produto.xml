@@ -1,70 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Tela de edição de produto.
+    Permite alterar:
+    - nome
+    - tipo
+    - preço de custo
+    - fornecedor
+    - preço de venda
+    - quantidade
+    - status do produto
+-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Editar Produto"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <EditText
-            android:id="@+id/edtEditarNomeProduto"
+        <!-- Cabeçalho -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome do produto"
-            android:inputType="text" />
+            android:background="@color/cor_superficie"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
 
-        <Spinner
-            android:id="@+id/spinnerEditarTipoProduto"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editar Produto"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Atualize os dados do produto ou altere seu status"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Card principal -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <EditText
-            android:id="@+id/edtEditarPrecoCustoProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Preço de custo"
-            android:inputType="numberDecimal"
-            android:layout_marginTop="12dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <Spinner
-            android:id="@+id/spinnerEditarFornecedorProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <!-- Nome -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome do produto"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/edtEditarPrecoVendaProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Preço de venda"
-            android:inputType="numberDecimal"
-            android:layout_marginTop="12dp" />
+                <EditText
+                    android:id="@+id/edtEditarNomeProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o nome do produto"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
 
-        <EditText
-            android:id="@+id/edtEditarQuantidadeProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Quantidade"
-            android:inputType="number"
-            android:layout_marginTop="12dp" />
+                <!-- Tipo -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Tipo do produto"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnSalvarEdicaoProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Salvar Alterações"
-            android:layout_marginTop="20dp" />
+                <Spinner
+                    android:id="@+id/spinnerEditarTipoProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input" />
 
+                <!-- Preço de custo -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Preço de custo"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtEditarPrecoCustoProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o preço de custo"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Fornecedor -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Fornecedor"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerEditarFornecedorProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input" />
+
+                <!-- Preço de venda -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Preço de venda"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtEditarPrecoVendaProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o preço de venda"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Quantidade -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Quantidade em estoque"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtEditarQuantidadeProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite a quantidade"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Botão salvar -->
+                <Button
+                    android:id="@+id/btnSalvarEdicaoProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Salvar Alterações"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+
+                <!-- Botão inativar -->
+                <Button
+                    android:id="@+id/btnInativarProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_botao_perigo"
+                    android:minHeight="52dp"
+                    android:text="Inativar Produto"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>

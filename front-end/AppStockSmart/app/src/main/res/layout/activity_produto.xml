@@ -1,51 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Tela de produtos.
+
+    Ajustes aplicados:
+    - cabeçalho no padrão novo
+    - card de filtros com borda da paleta
+    - campos no padrão bg_input
+    - botão principal e secundário diferenciados
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@drawable/bg_tela">
 
-    <TextView
-        android:id="@+id/txtTituloProdutos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Produtos"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/edtBuscarProduto"
+    <!-- Cabeçalho -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Buscar por nome"
-        android:inputType="text"
-        android:layout_marginTop="12dp" />
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="12dp"
+        android:background="@color/cor_superficie">
 
-    <Spinner
-        android:id="@+id/spinnerFiltroTipoProduto"
+        <TextView
+            android:id="@+id/txtTituloProdutos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produtos"
+            android:textColor="@color/cor_texto_principal"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Gerencie, filtre e acompanhe seus produtos"
+            android:textColor="@color/cor_texto_secundario"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Card de filtros -->
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp" />
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/cor_borda"
+        app:strokeWidth="1dp">
 
-    <Button
-        android:id="@+id/btnFiltrarProdutos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filtrar"
-        android:layout_marginTop="12dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <Button
-        android:id="@+id/btnNovoProduto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cadastrar Produto"
-        android:layout_marginTop="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filtros"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
+            <EditText
+                android:id="@+id/edtBuscarProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_input"
+                android:hint="Buscar por nome"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="@color/cor_texto_principal"
+                android:textColorHint="@color/cor_texto_secundario" />
+
+            <Spinner
+                android:id="@+id/spinnerFiltroTipoProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_input" />
+
+            <Spinner
+                android:id="@+id/spinnerFiltroStatusProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_input" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <!-- Botão secundário -->
+                <Button
+                    android:id="@+id/btnFiltrarProdutos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_botao_secundario"
+                    android:minHeight="52dp"
+                    android:text="Filtrar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_primaria"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="12dp"
+                    android:layout_height="wrap_content" />
+
+                <!-- Botão principal -->
+                <Button
+                    android:id="@+id/btnNovoProduto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Novo Produto"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_superficie"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Lista -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerProdutos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="16dp" />
+        android:clipToPadding="false"
+        android:paddingHorizontal="8dp"
+        android:paddingBottom="12dp" />
 
 </LinearLayout>

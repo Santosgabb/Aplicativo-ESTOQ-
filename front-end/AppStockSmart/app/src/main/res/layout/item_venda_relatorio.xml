@@ -1,33 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--
+    Item da lista de relatório de vendas.
+
+    Ajustes aplicados:
+    - estrutura visual mais profissional com MaterialCardView
+    - divisória com cor da nova paleta
+    - textos atualizados
+    - valor total destacado em verde de sucesso
+    - IDs preservados
+-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/cor_borda">
 
-    <TextView
-        android:id="@+id/txtItemVendaId"
-        android:layout_width="wrap_content"
+    <!-- Conteúdo interno -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Venda #0"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+        android:orientation="vertical"
+        android:padding="14dp">
 
-    <TextView
-        android:id="@+id/txtItemVendaUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Operador" />
-    <TextView
-        android:id="@+id/txtItemVendaDataHora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Data/Hora" />
+        <!-- Linha superior: ID + total -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/txtItemVendaTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total" />
+            <!-- ID da venda -->
+            <TextView
+                android:id="@+id/txtItemVendaId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Venda #0"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-</LinearLayout>
+            <!-- Total da venda -->
+            <TextView
+                android:id="@+id/txtItemVendaTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 0,00"
+                android:textColor="@color/cor_sucesso"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Linha separadora -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cor_borda" />
+
+        <!-- Operador -->
+        <TextView
+            android:id="@+id/txtItemVendaUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="Operador: Nome do usuário"
+            android:textColor="@color/cor_texto_principal"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Data e hora -->
+        <TextView
+            android:id="@+id/txtItemVendaDataHora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data/Hora: 02/04/2026 18:30"
+            android:textColor="@color/cor_texto_secundario"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

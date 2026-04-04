@@ -1,55 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
+<!--
+    Tela de cadastro de usuário.
+    Campos:
+    - Nome
+    - Login
+    - Senha
+    - Perfil
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela">
+
+    <!-- Container principal -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cadastrar Usuário"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <EditText
-            android:id="@+id/edtNomeUsuario"
+        <!-- Cabeçalho -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome" />
+            android:orientation="vertical"
+            android:background="@color/cor_superficie"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
 
-        <EditText
-            android:id="@+id/edtLoginUsuario"
+            <!-- Título -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cadastrar Usuário"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Subtítulo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Preencha os dados para cadastrar um novo usuário"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Card do formulário -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Login"
-            android:layout_marginTop="12dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <EditText
-            android:id="@+id/edtSenhaUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Senha"
-            android:inputType="textPassword"
-            android:layout_marginTop="12dp" />
+            <!-- Conteúdo do formulário -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <Spinner
-            android:id="@+id/spinnerPerfilUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" />
+                <!-- Campo: Nome -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome do usuário"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnSalvarUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Salvar Usuário"
-            android:layout_marginTop="20dp" />
+                <EditText
+                    android:id="@+id/edtNomeUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o nome"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
 
+                <!-- Campo: Login -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Login"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtLoginUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o login"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Campo: Senha -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Senha"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtSenhaUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite a senha"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Campo: Perfil -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Perfil do usuário"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerPerfilUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input" />
+
+                <!-- Botão de salvar -->
+                <Button
+                    android:id="@+id/btnSalvarUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Salvar Usuário"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>

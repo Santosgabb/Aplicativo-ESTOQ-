@@ -11,6 +11,12 @@
         android:usesCleartextTraffic="true" >
 
 
+        <activity android:name=".ui.fechamento.FechamentoCaixaActivity" />
+
+
+        <activity
+            android:name=".ui.fechamento.FechamentoCaixaHistoricoActivity"
+            android:exported="false" />
 
         <activity
             android:name=".ui.menu.MenuActivity"

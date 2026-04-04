@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.appstocksmart.app.databinding.ItemProdutoVendaBinding
 import com.appstocksmart.app.model.Produto
+import java.text.NumberFormat
+import java.util.Locale
 
 class ProdutoVendaAdapter(
     private var lista: List<Produto>,
@@ -25,9 +27,10 @@ class ProdutoVendaAdapter(
 
     override fun onBindViewHolder(holder: ProdutoVendaViewHolder, position: Int) {
         val produto = lista[position]
+        val moeda = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
 
         holder.binding.txtNomeProdutoVenda.text = produto.nome
-        holder.binding.txtPrecoProdutoVenda.text = "Venda: R$ ${produto.precoVenda}"
+        holder.binding.txtPrecoProdutoVenda.text = moeda.format(produto.precoVenda)
         holder.binding.txtQuantidadeProdutoVenda.text = "Estoque: ${produto.quantidade}"
 
         holder.itemView.setOnClickListener {

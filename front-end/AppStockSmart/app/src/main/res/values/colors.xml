@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- =========================================================
+         CORES PRINCIPAIS DA MARCA
+         ========================================================= -->
+    <color name="cor_primaria">#2563EB</color>
+    <color name="cor_primaria_escura">#1D4ED8</color>
+    <color name="cor_secundaria">#0F172A</color>
+
+    <!-- =========================================================
+         FUNDO E SUPERFÍCIES
+         ========================================================= -->
+    <color name="cor_fundo">#EEF4FF</color>
+    <color name="cor_superficie">#FFFFFF</color>
+    <color name="cor_superficie_suave">#F8FAFC</color>
+    <color name="cor_borda">#D6E0F0</color>
+
+    <!-- =========================================================
+         TEXTOS
+         ========================================================= -->
+    <color name="cor_texto_principal">#0F172A</color>
+    <color name="cor_texto_secundario">#475569</color>
+    <color name="cor_texto_claro">#FFFFFF</color>
+
+    <!-- =========================================================
+         STATUS
+         ========================================================= -->
+    <color name="cor_sucesso">#16A34A</color>
+    <color name="cor_alerta">#D97706</color>
+    <color name="cor_erro">#DC2626</color>
+    <color name="cor_info">#0284C7</color>
+
+    <!-- =========================================================
+         DESTAQUES
+         ========================================================= -->
+    <color name="cor_input_fundo">#F8FBFF</color>
+    <color name="cor_input_borda">#BFDBFE</color>
+    <color name="cor_card_borda">#D9E6F5</color>
+
 </resources>

@@ -1,47 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Tela de entrada de estoque.
+    Fluxo:
+    - selecionar tipo
+    - pesquisar produto
+    - selecionar produto
+    - visualizar resumo
+    - selecionar fornecedor
+    - informar quantidade
+    - salvar entrada
+-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Entrada de Estoque"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <Spinner
-            android:id="@+id/spinnerProdutoEntrada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/spinnerFornecedorEntrada"
+        <!-- Cabeçalho -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" />
+            android:orientation="vertical"
+            android:background="@color/cor_superficie"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
 
-        <EditText
-            android:id="@+id/edtQuantidadeEntrada"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entrada de Estoque"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Filtre o tipo, pesquise o produto e informe a quantidade de entrada"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Card principal -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Quantidade"
-            android:inputType="number"
-            android:layout_marginTop="12dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <Button
-            android:id="@+id/btnSalvarEntradaEstoque"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Salvar Entrada"
-            android:layout_marginTop="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
+                <!-- Tipo do produto -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tipo do produto"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerTipoProdutoEntrada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input" />
+
+                <!-- Pesquisa do produto -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Pesquisar produto"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtPesquisarProdutoEntrada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite o nome do produto"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Produto -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Produto"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerProdutoEntrada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input" />
+
+                <!-- Resumo do produto selecionado -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Resumo do produto"
+                        android:textColor="@color/cor_texto_principal"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtTipoProdutoSelecionadoEntrada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Tipo: -"
+                        android:textColor="@color/cor_texto_secundario"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtEstoqueAtualEntrada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Estoque atual: -"
+                        android:textColor="@color/cor_texto_secundario"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!-- Fornecedor -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Fornecedor"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerFornecedorEntrada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input" />
+
+                <!-- Quantidade -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Quantidade de entrada"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtQuantidadeEntrada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Digite a quantidade"
+                    android:inputType="number"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Botão salvar -->
+                <Button
+                    android:id="@+id/btnSalvarEntradaEstoque"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Salvar Entrada"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>

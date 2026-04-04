@@ -1,69 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
+<!--
+    Tela de detalhes do produto.
+    Exibe as informações completas do produto e permite:
+    - editar
+    - alterar o status
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela">
+
+    <!-- Container principal -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Detalhes do Produto"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:id="@+id/txtDetalheNome"
+        <!-- Cabeçalho da tela -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome:" />
+            android:orientation="vertical"
+            android:background="@color/cor_superficie"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
 
-        <TextView
-            android:id="@+id/txtDetalheTipo"
+            <!-- Título -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detalhes do Produto"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Subtítulo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Visualize informações completas e altere o status do produto"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Card com os dados do produto -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tipo:"
-            android:layout_marginTop="8dp" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtDetalhePrecoCusto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Preço de custo:"
-            android:layout_marginTop="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <TextView
-            android:id="@+id/txtDetalhePrecoVenda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Preço de venda:"
-            android:layout_marginTop="8dp" />
+                <!-- Nome -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome do produto"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/txtDetalheQuantidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Quantidade:"
-            android:layout_marginTop="8dp" />
+                <TextView
+                    android:id="@+id/txtDetalheNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Nome:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnEditarDetalheProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Editar Produto"
-            android:layout_marginTop="24dp" />
+                <!-- Tipo -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Tipo"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
 
-        <Button
-            android:id="@+id/btnExcluirDetalheProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Excluir Produto"
-            android:layout_marginTop="12dp" />
+                <TextView
+                    android:id="@+id/txtDetalheTipo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Tipo:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="16sp" />
 
+                <!-- Preço de custo -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Preço de custo"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtDetalhePrecoCusto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Preço de custo:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="16sp" />
+
+                <!-- Preço de venda -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Preço de venda"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtDetalhePrecoVenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Preço de venda:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Quantidade -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Quantidade em estoque"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtDetalheQuantidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Quantidade:"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Botão editar -->
+                <Button
+                    android:id="@+id/btnEditarDetalheProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Editar Produto"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+
+                <!-- Botão alterar status -->
+                <Button
+                    android:id="@+id/btnExcluirDetalheProduto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_botao_secundario"
+                    android:minHeight="52dp"
+                    android:text="Alterar Status do Produto"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_primaria"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>

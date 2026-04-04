@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Botão principal do app.
+    Agora com degradê para ficar mais forte visualmente.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="0"
+        android:endColor="@color/cor_primaria_escura"
+        android:startColor="@color/cor_primaria" />
+
+    <corners android:radius="16dp" />
+</shape>

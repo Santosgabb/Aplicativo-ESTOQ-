@@ -11,7 +11,7 @@ object ApiClient {
     //ip 192.168.15:8080 e o ipv4 do not
     // Para emulador Android
     // Quando for celular físico, depois trocamos para o IP do seu notebook
-    private const val BASE_URL = "http://192.168.1.2:8080/"
+    private const val BASE_URL = "http://192.168.1.13:8080/"
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

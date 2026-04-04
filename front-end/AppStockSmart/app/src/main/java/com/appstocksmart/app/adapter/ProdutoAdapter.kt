@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.appstocksmart.app.databinding.ItemProdutoBinding
 import com.appstocksmart.app.model.Produto
+import java.util.Locale
 
 class ProdutoAdapter(
     private var lista: List<Produto>,
@@ -15,7 +16,11 @@ class ProdutoAdapter(
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProdutoViewHolder {
-        val binding = ItemProdutoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemProdutoBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ProdutoViewHolder(binding)
     }
 
@@ -24,8 +29,17 @@ class ProdutoAdapter(
 
         holder.binding.txtItemNomeProduto.text = produto.nome
         holder.binding.txtItemTipoProduto.text = "Tipo: ${produto.tipo}"
-        holder.binding.txtItemPrecoVendaProduto.text = "Venda: R$ ${produto.precoVenda}"
-        holder.binding.txtItemQuantidadeProduto.text = "Qtd: ${produto.quantidade}"
+        holder.binding.txtItemPrecoVendaProduto.text =
+            "R$ %.2f".format(Locale("pt", "BR"), produto.precoVenda)
+        holder.binding.txtItemQuantidadeProduto.text = "${produto.quantidade} un"
+
+        if (produto.ativo) {
+            holder.binding.txtItemStatusProduto.text = "ATIVO"
+            holder.binding.txtItemStatusProduto.setTextColor(0xFF0F766E.toInt())
+        } else {
+            holder.binding.txtItemStatusProduto.text = "INATIVO"
+            holder.binding.txtItemStatusProduto.setTextColor(0xFFB91C1C.toInt())
+        }
 
         holder.itemView.setOnClickListener {
             onItemClick(produto)

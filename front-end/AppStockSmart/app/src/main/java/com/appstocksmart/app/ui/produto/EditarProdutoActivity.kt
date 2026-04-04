@@ -3,6 +3,7 @@ package com.appstocksmart.app.ui.produto
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.appstocksmart.app.api.ApiClient
 import com.appstocksmart.app.api.ApiService
@@ -41,6 +42,10 @@ class EditarProdutoActivity : AppCompatActivity() {
 
         binding.btnSalvarEdicaoProduto.setOnClickListener {
             salvarEdicao()
+        }
+
+        binding.btnInativarProduto.setOnClickListener {
+            confirmarInativacao()
         }
     }
 
@@ -99,7 +104,6 @@ class EditarProdutoActivity : AppCompatActivity() {
         val apiService = ApiClient.retrofit.create(ApiService::class.java)
 
         apiService.buscarProdutoPorId(idProduto).enqueue(object : Callback<Produto> {
-
             override fun onResponse(call: Call<Produto>, response: Response<Produto>) {
                 if (response.isSuccessful) {
                     val produto = response.body()
@@ -129,13 +133,21 @@ class EditarProdutoActivity : AppCompatActivity() {
                     if (posicaoFornecedor != -1) {
                         binding.spinnerEditarFornecedorProduto.setSelection(posicaoFornecedor)
                     }
-
                 } else {
-                    Toast.makeText(
-                        this@EditarProdutoActivity,
-                        "Erro ao buscar produto: ${response.code()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (response.code() == 404) {
+                        Toast.makeText(
+                            this@EditarProdutoActivity,
+                            "Produto não encontrado ou foi inativado",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this@EditarProdutoActivity,
+                            "Erro ao buscar produto: ${response.code()}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
 
@@ -185,13 +197,13 @@ class EditarProdutoActivity : AppCompatActivity() {
             precoCusto = precoCusto,
             precoVenda = precoVenda,
             quantidade = quantidade,
-            fornecedor = fornecedorSelecionado
+            fornecedor = fornecedorSelecionado,
+            ativo = true
         )
 
         val apiService = ApiClient.retrofit.create(ApiService::class.java)
 
         apiService.atualizarProduto(idProduto, produtoAtualizado).enqueue(object : Callback<Produto> {
-
             override fun onResponse(call: Call<Produto>, response: Response<Produto>) {
                 if (response.isSuccessful) {
                     Toast.makeText(
@@ -210,6 +222,48 @@ class EditarProdutoActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<Produto>, t: Throwable) {
+                Toast.makeText(
+                    this@EditarProdutoActivity,
+                    "Falha na conexão: ${t.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        })
+    }
+
+    private fun confirmarInativacao() {
+        AlertDialog.Builder(this)
+            .setTitle("Inativar produto")
+            .setMessage("Deseja realmente inativar este produto?")
+            .setPositiveButton("Sim") { _, _ ->
+                inativarProduto()
+            }
+            .setNegativeButton("Não", null)
+            .show()
+    }
+
+    private fun inativarProduto() {
+        val apiService = ApiClient.retrofit.create(ApiService::class.java)
+
+        apiService.inativarProduto(idProduto).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(
+                        this@EditarProdutoActivity,
+                        "Produto inativado com sucesso",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    finish()
+                } else {
+                    Toast.makeText(
+                        this@EditarProdutoActivity,
+                        "Erro ao inativar produto: ${response.code()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
                 Toast.makeText(
                     this@EditarProdutoActivity,
                     "Falha na conexão: ${t.message}",

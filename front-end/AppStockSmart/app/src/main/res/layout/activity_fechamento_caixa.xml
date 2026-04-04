@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Tela de fechamento de caixa.
+    Funções desta tela:
+    - mostrar gerente logado
+    - selecionar operador
+    - informar valor inicial do caixa
+    - adicionar saídas do caixa
+    - informar observação
+    - concluir o fechamento
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_tela"
+    android:fillViewport="true">
+
+    <!-- Container principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Cabeçalho da tela -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cor_superficie"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/tvTituloFechamento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fechamento de Caixa"
+                android:textColor="@color/cor_texto_principal"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Nome ou identificação do gerente logado -->
+            <TextView
+                android:id="@+id/tvUsuarioLogado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Gerente logado:"
+                android:textColor="@color/cor_texto_secundario"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!-- Card principal do formulário -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/cor_borda"
+            app:strokeWidth="1dp">
+
+            <!-- Conteúdo interno -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Data do fechamento -->
+                <TextView
+                    android:id="@+id/tvDataLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data do fechamento"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDataValor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="00/00/0000"
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="15sp" />
+
+                <!-- Seleção do operador -->
+                <TextView
+                    android:id="@+id/tvOperadorLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="Selecione o operador"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerOperador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input" />
+
+                <!-- Valor inicial do caixa -->
+                <TextView
+                    android:id="@+id/tvValorInicialCaixaLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Valor inicial do caixa"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etValorInicialCaixa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Ex: 200,00"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Valor previsto em dinheiro no caixa -->
+                <TextView
+                    android:id="@+id/tvDinheiroPrevistoLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Dinheiro previsto no caixa"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDinheiroPrevistoValor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="R$ 0,00"
+                    android:textColor="@color/cor_info"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <!-- Área de saídas do caixa -->
+                <TextView
+                    android:id="@+id/tvSaidasLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Saídas do caixa"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Descrição da saída -->
+                <EditText
+                    android:id="@+id/etDescricaoSaida"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Descrição da saída (ex: gelo)"
+                    android:inputType="textCapSentences"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Valor da saída -->
+                <EditText
+                    android:id="@+id/etValorSaida"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Valor da saída"
+                    android:inputType="numberDecimal"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Botão para adicionar uma saída -->
+                <Button
+                    android:id="@+id/btnAdicionarSaida"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_botao_secundario"
+                    android:minHeight="52dp"
+                    android:text="Adicionar saída"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_primaria"
+                    android:textStyle="bold" />
+
+                <!-- Botão para limpar saídas -->
+                <Button
+                    android:id="@+id/btnLimparSaidas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_botao_perigo"
+                    android:minHeight="52dp"
+                    android:text="Limpar saídas"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+
+                <!-- Lista textual das saídas -->
+                <TextView
+                    android:id="@+id/tvListaSaidasTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Saídas adicionadas"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvListaSaidas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_card"
+                    android:padding="12dp"
+                    android:text="Nenhuma saída adicionada."
+                    android:textColor="@color/cor_texto_secundario"
+                    android:textSize="15sp" />
+
+                <!-- Total das saídas -->
+                <TextView
+                    android:id="@+id/tvTotalSaidasLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Total de saídas"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTotalSaidasValor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="R$ 0,00"
+                    android:textColor="@color/cor_erro"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Observação opcional -->
+                <TextView
+                    android:id="@+id/tvObservacaoLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Observação"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etObservacaoFechamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input"
+                    android:gravity="top|start"
+                    android:hint="Opcional"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:minLines="2"
+                    android:padding="12dp"
+                    android:textColor="@color/cor_texto_principal"
+                    android:textColorHint="@color/cor_texto_secundario" />
+
+                <!-- Indicador de carregamento -->
+                <ProgressBar
+                    android:id="@+id/progressBarFechamento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="24dp"
+                    android:visibility="gone" />
+
+                <!-- Botão final para fechar caixa -->
+                <Button
+                    android:id="@+id/btnFecharCaixa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_botao_primario"
+                    android:minHeight="52dp"
+                    android:text="Fechar Caixa"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cor_texto_claro"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>
